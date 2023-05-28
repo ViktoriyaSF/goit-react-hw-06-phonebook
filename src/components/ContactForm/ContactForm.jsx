@@ -19,7 +19,13 @@ export const ContactForm = () => {
       name: evt.currentTarget.elements.name.value,
       number: evt.currentTarget.elements.number.value,
     };
+    console.log(contact.name);
+    console.log(contacts);
+    const listName = contacts.map(contact => contact.name.toLowerCase());
 
+    console.log(listName);
+    const newName = contact.name.toLowerCase();
+    console.log(newName);
     const isExist = contacts.find(
       ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
     );
