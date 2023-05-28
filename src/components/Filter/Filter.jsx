@@ -12,7 +12,7 @@ import { setFilter } from 'redux/filterSlice';
 export const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(getFilter);
-  const onFilter = event => dispatch(setFilter(event.target.value));
+  const onFilter = evt => dispatch(setFilter(evt.target.value));
 
   return (
     <LabelFilter>
