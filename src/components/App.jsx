@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { GlobalStyle } from './BasicStyles/GlobalStyle';
 import { Layout } from './Layout/Layout';
 import { nanoid } from 'nanoid';
-// import initialContacts from '../contacts.json';
+import initialContacts from '../contacts.json';
 
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
-import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+// import { useSelector } from 'react-redux';
+// import { getContacts } from '../redux/selectors';
 
 const getinitialContacts = () => {
-  const initialContacts = useSelector(getContacts);
   const contactsLocal = localStorage.getItem('contacts');
   const parseContacts = JSON.parse(contactsLocal);
   if (parseContacts?.length) {
@@ -22,6 +21,7 @@ const getinitialContacts = () => {
 };
 
 export const App = () => {
+  // const initialContacts = useSelector(getContacts);
   const [contacts, setContacts] = useState(getinitialContacts);
   const [filter, setFilter] = useState('');
 

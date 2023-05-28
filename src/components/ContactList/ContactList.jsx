@@ -1,13 +1,26 @@
-import propTypes from 'prop-types';
+// import propTypes from 'prop-types';
 import React from 'react';
 import { List, Item } from './ContactList.syled';
 import { FiDelete } from 'react-icons/fi';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts, getFilter } from 'redux/selectors';
+import { deleteContact } from 'redux/contactsSlice';
 
-// FiDelete;
-export const ContactList = ({ contacts, onDelContact }) => {
+export const ContactList = () => {
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+
+  const filteredContacts = contacts?.filter(contact =>
+    contact?.name?.toLowerCase().includes(filter.toLowerCase())
+  );
+  const onDelContact = id => {
+    dispatch(deleteContact(id));
+  };
+
   return (
     <List>
-      {contacts.map(({ id, name, number }) => (
+      {filteredContacts.map(({ id, name, number }) => (
         <Item key={id}>
           <p>{name}:</p>
           <p>{number}</p>
@@ -20,12 +33,12 @@ export const ContactList = ({ contacts, onDelContact }) => {
     </List>
   );
 };
-ContactList.propTypes = {
-  contacts: propTypes.arrayOf(
-    propTypes.exact({
-      id: propTypes.string.isRequired,
-      name: propTypes.string.isRequired,
-      number: propTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-};
+// ContactList.propTypes = {
+//   contacts: propTypes.arrayOf(
+//     propTypes.exact({
+//       id: propTypes.string.isRequired,
+//       name: propTypes.string.isRequired,
+//       number: propTypes.string.isRequired,
+//     }).isRequired
+//   ).isRequired,
+// };
