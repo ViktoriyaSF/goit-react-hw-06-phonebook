@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
-import { addContact } from 'redux/contactsSlice';
+import { addContact, contactsInitialState } from 'redux/contactsSlice';
 
 export const ContactForm = () => {
   const contacts = useSelector(getContacts);
@@ -19,9 +19,10 @@ export const ContactForm = () => {
       name: evt.currentTarget.elements.name.value,
       number: evt.currentTarget.elements.number.value,
     };
+    console.log(contactsInitialState);
+    console.log(contacts);
 
     const listName = contacts.map(contact => contact.name.toLowerCase());
-    console.log(listName);
     const newName = contact.name.toLowerCase().trim();
 
     if (listName.includes(newName)) {
