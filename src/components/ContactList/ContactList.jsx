@@ -5,7 +5,6 @@ import { FiDelete } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts, getFilter } from 'redux/selectors';
 import { deleteContact } from 'redux/contactsSlice';
-import { toast } from 'react-toastify';
 
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
