@@ -20,11 +20,9 @@ export const ContactForm = () => {
       number: evt.currentTarget.elements.number.value,
     };
 
-    console.log(contacts);
-
     const listName = contacts.map(contact => contact.name.toLowerCase());
     console.log(listName);
-    const newName = contact.name.toLowerCase();
+    const newName = contact.name.toLowerCase().trim();
 
     if (listName.includes(newName)) {
       return toast.warn(`${contact.name} is already in contacts.`);
@@ -33,7 +31,8 @@ export const ContactForm = () => {
     dispatch(addContact(contact));
     evt.currentTarget.reset();
   };
-
+  const nameInputId = nanoid();
+  const telInputId = nanoid();
   return (
     <Form onSubmit={handleSubmit}>
       <Label>
@@ -43,6 +42,7 @@ export const ContactForm = () => {
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          id={nameInputId}
           required
         />
       </Label>
@@ -53,6 +53,7 @@ export const ContactForm = () => {
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          id={telInputId}
           required
         />
       </Label>

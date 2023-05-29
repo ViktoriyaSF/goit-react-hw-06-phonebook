@@ -5,6 +5,7 @@ import { FiDelete } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts, getFilter } from 'redux/selectors';
 import { deleteContact } from 'redux/contactsSlice';
+import { toast } from 'react-toastify';
 
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
@@ -17,7 +18,9 @@ export const ContactList = () => {
   const onDelContact = id => {
     dispatch(deleteContact(id));
   };
-
+  if (!filteredContacts?.length) {
+    return <h1>No contacts found.</h1>;
+  }
   return (
     <List>
       {filteredContacts.map(({ id, name, number }) => (
