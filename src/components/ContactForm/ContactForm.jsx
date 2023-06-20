@@ -19,6 +19,7 @@ export const ContactForm = () => {
       name: evt.currentTarget.elements.name.value,
       number: evt.currentTarget.elements.number.value,
     };
+    console.log(contact);
     console.log(contactsInitialState);
     console.log(contacts);
 
